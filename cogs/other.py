@@ -67,7 +67,7 @@ class OtherCog(commands.Cog):
       embed.add_field(name="Độ ẩm", value=f"{humidity}%", inline=True)
       embed.add_field(name="Ghi chú", value=description, inline=False)
       await ctx.send(embed=embed)
-
+  #This not finished yet
   @commands.command()
   async def pic(self, ctx, *, picture: str):
     response = requests.get(f'https://api.unsplash.com/photos/random?query={picture}&client_id= ')
@@ -76,7 +76,36 @@ class OtherCog(commands.Cog):
     description = data['description']
     embed = discord.Embed(title=f"{description}", color=discord.Color.blue())
     embed.set_image(url=image_url)
-    await ctx.send(embed=embed)      
+    await ctx.send(embed=embed)   
+  #My friend made this also not finished
+  @commands.command()
+  async def rbc(self, ctx, *, player:str = None):
+    choices = ["rock","paper","scissors"]
+    bot = random.choice(choices)
+    player = player
+    if player not in choices:
+      await ctx.send("rock,paper, or scissors?: ")
+    else: 
+      if player == bot: result = 'Tie!'
+      elif bot == "rock":
+        if player == "paper":
+            result ="You win!"
+        elif player == "scissors":
+            result ="You lose"
+      elif bot == "paper":
+        if player == "rock":
+            result =("You lose!")
+        elif player == "scissors":
+            result =("You win!")
+      elif bot == "scissors":
+        if player == "paper":
+            result =("You lose!")
+        elif player == "rock":
+            result =("You win")      
+      embed = discord.Embed(title=f"{result}", color=discord.Color.blue())
+      embed.add_field(name='Bot:', value=f'{bot}', inline = False)
+      embed.add_field(name=f'{ctx.author.display_name}:', value=f'{player}', inline = False)
+      await ctx.send(embed=embed)
     
 async def setup(client):
   await client.add_cog(OtherCog(client))
