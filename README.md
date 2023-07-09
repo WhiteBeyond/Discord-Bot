@@ -5,7 +5,7 @@
 - Host on Replit
 
 
-**Mostly from stackoverflow**
+**Random from everywhere**
 
 ```
 pip install discord.py
